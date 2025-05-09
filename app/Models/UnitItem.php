@@ -8,17 +8,17 @@ class UnitItem extends Model
 {
     protected $fillable = ['unit_code', 'item_id', 'location_id', 'condition', 'status'];
 
-    public function location()
-    {
-        return $this->belongsTo(Location::class);
-    }
-
     public function item()
     {
         return $this->belongsTo(Item::class);
     }
 
-    public function borrowings()
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function borrowing()
     {
         return $this->hasMany(Borrowing::class);
     }

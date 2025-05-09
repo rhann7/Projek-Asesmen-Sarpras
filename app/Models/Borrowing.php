@@ -13,7 +13,7 @@ class Borrowing extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function unitItem()
+    public function unit()
     {
         return $this->belongsTo(UnitItem::class);
     }

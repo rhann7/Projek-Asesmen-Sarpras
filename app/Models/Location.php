@@ -8,7 +8,7 @@ class Location extends Model
 {
     protected $fillable = ['name'];
 
-    public function unitItems()
+    public function unit()
     {
         return $this->hasMany(UnitItem::class);
     }

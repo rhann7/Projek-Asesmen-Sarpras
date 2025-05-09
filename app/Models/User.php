@@ -21,7 +21,7 @@ class User extends Authenticatable
         return ['email_verified_at' => 'datetime', 'password' => 'hashed'];
     }
 
-    public function borrowings()
+    public function borrowing()
     {
         return $this->hasMany(Borrowing::class);
     }

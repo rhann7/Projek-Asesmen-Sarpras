@@ -13,7 +13,7 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
     
-    public function unitItems()
+    public function unit()
     {
         return $this->hasMany(UnitItem::class);
     }
