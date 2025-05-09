@@ -8,7 +8,6 @@ use App\Http\Controllers\UnitItemController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\ReturningController;
 use App\Http\Controllers\UsedItemController;
-use App\Models\Returning;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [UserController::class, 'login']);
