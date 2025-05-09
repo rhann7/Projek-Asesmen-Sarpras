@@ -11,9 +11,11 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $item = Item::with('category')->withCount('units')->get();
+        $items = Item::with('category')
+                       ->withCount('unitItems as units_count')
+                       ->get();
 
-        return ItemResource::collection($item);
+        return ItemResource::collection($items);
     }
 
     public function store(Request $request)

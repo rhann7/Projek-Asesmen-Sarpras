@@ -12,9 +12,9 @@ class BorrowingController extends Controller
 {
     public function index()
     {
-        return BorrowingResource::collection(
-            Borrowing::with(['user', 'unitItem', 'returning'])->latest()->get()
-        );
+        return BorrowingResource::collection(Borrowing::with([
+                'user', 'unit', 'unit.location'
+        ])->latest()->get());
     }
 
     public function show($id)
@@ -54,8 +54,8 @@ class BorrowingController extends Controller
         ]);
 
         $borrowing = Borrowing::findOrFail($id);
-        $unitItem  = $borrowing->unitItem;
-        $item      = $unitItem->item;
+        $unit      = $borrowing->unit;
+        $item      = $unit->item;
 
         $status = $validated['status'];
 
@@ -66,9 +66,9 @@ class BorrowingController extends Controller
         $borrowing->update(['status' => $status]);
 
         if (in_array($status, ['returned', 'rejected'])) {
-            $unitItem->update(['status' => 'available']);
+            $unit->update(['status' => 'available']);
         } else {
-            $unitItem->update(['status' => $status]);
+            $unit->update(['status' => $status]);
         }
 
         return BorrowingResource::make($borrowing)->additional([

@@ -17,7 +17,7 @@ class ItemResource extends JsonResource
             'Disposable'  => ucfirst($this->disposable ? 'Yes' : 'No'),
             'Category'    => $this->whenLoaded('category', fn ()
                           => optional($this->category)->name),
-            'Units_Count' => $this->items_count,
+            'Units_Count' => $this->units_count,
             'Image'       => $this->image,
             'Created_At'  => $this->created_at->format('d-m-Y H:i'),
             'Updated_At'  => $this->updated_at->format('d-m-Y H:i'),

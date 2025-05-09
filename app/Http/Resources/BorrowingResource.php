@@ -11,22 +11,16 @@ class BorrowingResource extends JsonResource
     {
         return [
             'ID'            => $this->id,
-            'User'          => $this->whenLoaded('user', function () {
-                return [
-                    'ID'    => optional($this->user)->id,
-                    'Name'  => optional($this->user)->name,
-                    'Class' => optional($this->user)->class,
-                ];
-            }),
-            'Item'          => $this->whenLoaded('unitItem', function () {
-                return [
-                    'ID'    => $this->unit_id,
-                    'Code'  => optional($this->unitItem)->unit_code,
-                    'Name'  => optional($this->unitItem?->item)->name,
-                    'Brand' => optional($this->unitItem?->item)->brand,
-                ];
-            }),
-            'Item_Location' => optional($this->unitItem?->location)->name,
+            'User_ID'       => $this->whenLoaded('unit', fn ()
+                            => optional($this->user)->id),
+            'User_Email'    => $this->whenLoaded('unit', fn ()
+                            => optional($this->user)->email),
+            'Item_ID'       => $this->whenLoaded('unit', fn ()
+                            => optional($this->unit->item)->id),
+            'Item_Code'     => $this->whenLoaded('unit', fn ()
+                            => optional($this->unit)->unit_code),
+            'Item_Location' => $this->whenLoaded('unit', fn ()
+                            => optional($this->unit->location)->name),
             'Status'        => ucfirst($this->status),
             'Description'   => $this->description,
             'Borrowed_At'   => $this->created_at->format('d-m-Y H:i'),
